@@ -7,6 +7,21 @@ router.get('/test', (req, res) => {
   res.send('Deu certo !');
 });
 
+//  FORM DETALHES VAGA
+router.get('/view/:id', (req, res) => Job.findOne({
+    where: {id: req.params.id}
+  }).then(job => {
+    res.render('view', {
+      job
+    });
+  }).catch(err => console.log(err))
+);
+
+// FORM ROTA ENVIO
+router.get('/add', (req, res) => {
+  res.render('add');
+});
+
 // ADD JOB VIA POST
 router.post('/add', (req, res) => {
 
